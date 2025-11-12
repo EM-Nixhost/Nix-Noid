@@ -1,0 +1,1 @@
+This is a very simple "re-distribution" of Nix-OS without flakes, homem-manager or anything fancy, just a simple system to utilize the modularity and reproducablitiy of Nix-OS so my friends can try out linux in stability and freedom.
