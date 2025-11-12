@@ -1,0 +1,14 @@
+#NixOS Build Artifacts
+
+/result
+/default.nix
+*.drv
+
+#Private User Configuration (Ignores all files in the Users/ directory)
+
+/Users/**/*
+
+#Private Host Configuration (The single entry point for this host's config)
+
+/Host/Host.nix
+/Host/harware-configuration.nix
