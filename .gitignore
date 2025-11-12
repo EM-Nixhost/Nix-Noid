@@ -11,4 +11,4 @@
 #Private Host Configuration (The single entry point for this host's config)
 
 /Host/Host.nix
-/Host/harware-configuration.nix
+/Host/hardware-configuration.nix
