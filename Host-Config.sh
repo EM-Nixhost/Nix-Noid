@@ -72,14 +72,17 @@ in
   };
 
   imports =
-    [ ./hardware-configuration.nix ] ++
+   [
+      ./hardware-configuration.nix
+      ./Unstable.Nix
+      ../Users/${primaryUser}/Applications.nix
+    ]
+    # These conditional imports are appended
+    ++ (lib.optional isKDE ./Desktop-Enviroment/KDE.nix)
+    ++ (lib.optional isGnome ./Desktop-Enviroment/Gnome.nix)
+    ++ (lib.optional isAmd ./Graphics/AMD.nix)
+    ++ (lib.optional isNvidia ./Graphics/Nvidia.nix);
 
-    (lib.optional isKDE ./Desktop-Enviroment/KDE.nix) ++
-    (lib.optional isGnome ./Desktop-Enviroment/Gnome.nix) ++
-    (lib.optional isAmd ./Graphics/AMD.nix) ++
-    (lib.optional isNvidia ./Graphics/Nvidia.nix) ++
-
-    [ privatePackagePath ];
 }
 EOF
 

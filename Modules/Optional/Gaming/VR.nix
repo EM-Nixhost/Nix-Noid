@@ -1,33 +1,45 @@
 { config, pkgs, lib, ... }:
-
 {
 options = {
-    Extra-Launchers.enable =
-      lib.mkEnableOption "enables Extra-Launchers";
+    VR.enable =
+      lib.mkEnableOption "enables VR";
     };
 
-   config = lib.mkIf config.Extra-Launchers.enable {
-    programs.steam.enable = true;
-    programs.steam.gamescopeSession.enable = true;
+   config = lib.mkIf config.VR.enable {
 
-    programs.gamemode.enable = true;
+services.wivrn = {
+  enable = true;
+  openFirewall = true;
 
-    environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-        "\${HOME}/.steam/root/compatibilitytools.d";
+  # Write information to /etc/xdg/openxr/1/active_runtime.json, VR applications
+  # will automatically read this and work with WiVRn (Note: This does not currently
+  # apply for games run in Valve's Proton)
+    defaultRuntime = true;
+
+  # Run WiVRn as a systemd service on startup
+  autoStart = true;
+
+  # Config for WiVRn (https://github.com/WiVRn/WiVRn/blob/master/docs/configuration.md)
+  config = {
+    enable = true;
+    json = {
+      # 1.0x foveation scaling
+      scale = 1.0;
+      # 100 Mb/s
+      bitrate = 100000000;
+      encoders = [
+        {
+          encoder = "vaapi";
+          codec = "h265";
+          # 1.0 x 1.0 scaling
+          width = 1.0;
+          height = 1.0;
+          offset_x = 0.0;
+          offset_y = 0.0;
+          }
+        ];
+      };
     };
-
-    environment.systemPackages = with pkgs; [
-      # System Req's
-      wineWowPackages.waylandFull
-      protonup
-      protonup-qt
-      # Baseline Launchers
-      heroic
-      prismlauncher
-      # Piracy
-      hydralauncher
-      lutris
-    ];
   };
+};
 }

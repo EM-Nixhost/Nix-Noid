@@ -28,6 +28,7 @@
       libnotify # Useful for desktop notifications in Hyprland
       # Explicitly adding KRunner, the Plasma search and command utility.
       kdePackages.krunner
+      kdePackages.kio-admin
     ];
     environment.plasma6.excludePackages = with pkgs; [
       kdePackages.kdepim-runtime
