@@ -12,3 +12,6 @@
 
 /Host/Host.nix
 /Host/hardware-configuration.nix
+commit.sh
+/commit.sh
+./commit.sh
