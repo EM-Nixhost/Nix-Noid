@@ -21,6 +21,7 @@
       kdePackages.dolphin-plugins
       kdePackages.ffmpegthumbs
       vlc
+      gparted
       icoutils
       # Hyprland companion packages
       waybar # Status bar for Wayland (Recommended replacement for Plasma taskbar)
