@@ -68,7 +68,7 @@ in
   users.users.${primaryUser} = {
     isNormalUser = true;
     description = "${primaryUser}'s Account";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker"];
   };
 
   imports =
