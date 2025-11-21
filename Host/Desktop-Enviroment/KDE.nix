@@ -23,6 +23,7 @@
       vlc
       gparted
       icoutils
+      rar
       # Hyprland companion packages
       waybar # Status bar for Wayland (Recommended replacement for Plasma taskbar)
       wofi   # Application launcher for Wayland (dmenu replacement)

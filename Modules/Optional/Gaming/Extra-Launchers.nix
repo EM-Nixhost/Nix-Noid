@@ -7,7 +7,6 @@ options = {
     };
    config = lib.mkIf config.Extra-Launchers.enable {
 
-    };
 
     environment.systemPackages = with pkgs; [
       # Baseline Launchers

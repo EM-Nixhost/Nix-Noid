@@ -5,5 +5,6 @@
     [ # Include the results of the hardware scan.
       #./Gaming/Modding.nix
       ./Gaming/VR.nix
+      ./Gaming/Extra-Launchers.nix
         ];
     }
