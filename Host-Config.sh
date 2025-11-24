@@ -125,7 +125,7 @@ in
   users.users.\${primaryUser} = {
     isNormalUser = true;
     description = "\${primaryUser}'s Account";
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
   };
 
   imports =
