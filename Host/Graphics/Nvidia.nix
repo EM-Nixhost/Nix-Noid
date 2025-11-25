@@ -24,13 +24,14 @@ options = {
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.nvidiaSettings = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = true;
-    nvidiaSettings = true;
+    #nvidiaSettings = true;
     nvidiaPersistenced = true;
     dynamicBoost.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
