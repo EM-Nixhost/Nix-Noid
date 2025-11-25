@@ -9,13 +9,10 @@ options = {
    config = lib.mkIf config.Nvidia.enable {
 
   nixpkgs.config.allowUnfree = true;
-  # X11 with current settings works so far the best with 144Hz on external and internal and can change brightness, no gestures for gnome(meh)
-  # sudo systemctl restart display-manager -> restart to apply changes; !!!All apps would close
-  # For now not laggy when intel enabled
   boot.kernelParams = [ "i915.modeset=1" ];
-  #   "nouveau.modeset=0" "nvidia.NVreg_EnableGpuFirmware=0"
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       libvdpau
       vaapiVdpau
@@ -28,21 +25,15 @@ options = {
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Does not work
-  # Disable Nvidia power management services for suspen/hibernate issues
-  # services.nvidia-suspend.enable = false;
-  # services.nvidia-hibernate.enable = false;
-  # services.nvidia-resume.enable = false;
-
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = false;
+    open = true;
     nvidiaSettings = true;
     nvidiaPersistenced = true;
     dynamicBoost.enable = true;
-
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     prime = {
       sync.enable = true;
       intelBusId = "PCI:00:02:0";
